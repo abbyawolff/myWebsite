@@ -3,159 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Lovers Website</title>
+    <title>Modern Dog Hub</title>
     <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gray: #E2E8F0;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
         }
         
         body {
             display: flex;
             min-height: 100vh;
-            background-color: #f5f5f5;
+            background-color: var(--light);
+            color: var(--dark);
         }
         
-        /* Sidebar Styles */
+        /* Modern Sidebar */
         .sidebar {
-            width: 250px;
-            background-color: #4a6fa5;
-            color: white;
-            padding: 20px;
+            width: 200px;
+            background: white;
+            padding: 30px 20px;
             height: 100vh;
             position: sticky;
             top: 0;
+            border-right: 1px solid var(--gray);
+            display: flex;
+            flex-direction: column;
         }
         
-        .sidebar h2 {
-            margin-bottom: 20px;
+        .sidebar-header {
+            margin-bottom: 30px;
             text-align: center;
-            border-bottom: 2px solid #fff;
-            padding-bottom: 10px;
         }
         
-        .sidebar img {
-            width: 100%;
-            border-radius: 10px;
+        .sidebar-header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 15px;
-            border: 3px solid #fff;
+            border: 3px solid var(--primary);
         }
         
-        .sidebar ul {
-            list-style-type: none;
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
         }
         
-        .sidebar li {
-            margin-bottom: 10px;
-            padding: 8px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        .sidebar-nav {
+            flex-grow: 1;
         }
         
-        .sidebar li:hover {
-            background-color: #3a5a8a;
-        }
-        
-        .sidebar a {
-            color: white;
-            text-decoration: none;
+        .sidebar-nav a {
             display: block;
+            padding: 12px 10px;
+            margin-bottom: 8px;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
         }
         
-        /* Main Content Styles */
+        .sidebar-nav a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar-nav a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .sidebar-nav i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .sidebar-footer {
+            font-size: 0.8rem;
+            color: #718096;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray);
+        }
+        
+        /* Main Content */
         .main-content {
             flex: 1;
-            padding: 30px;
+            padding: 40px;
         }
         
         header {
-            background-color: #ff8c42;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        .dog-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
         
         .dog-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .dog-card h3 {
-            color: #4a6fa5;
-            margin-bottom: 10px;
+        .dog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
         .dog-card img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 10px 0;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .dog-card-content {
+            padding: 20px;
+        }
+        
+        .dog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .dog-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
         
         footer {
+            margin-top: 50px;
             text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            border-radius: 8px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px;
+            }
+            
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .sidebar-nav a {
+                margin-bottom: 0;
+            }
         }
     </style>
+    <!-- Using Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Sidebar -->
+    <!-- Minimalist Sidebar -->
     <div class="sidebar">
-        <h2>Dog Breeds</h2>
-        <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cute Dog">
+        <div class="sidebar-header">
+            <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Dog Logo">
+            <h2>Dog Hub</h2>
+        </div>
         
-        <ul>
-            <li><a href="#">Labrador Retriever</a></li>
-            <li><a href="#">German Shepherd</a></li>
-            <li><a href="#">Golden Retriever</a></li>
-            <li><a href="#">Bulldog</a></li>
-            <li><a href="#">Beagle</a></li>
-            <li><a href="#">Poodle</a></li>
-            <li><a href="#">Rottweiler</a></li>
-            <li><a href="#">Yorkshire Terrier</a></li>
-        </ul>
+        <nav class="sidebar-nav">
+            <a href="#" class="active">
+                <i class="fas fa-paw"></i>
+                <span>Breeds</span>
+            </a>
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                <span>Adoption</span>
+            </a>
+            <a href="#">
+                <i class="fas fa-bone"></i>
+                <span>Care</span>
+            </a>
+            <a href="#">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training</span>
+            </a>
+            <a href="#">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Locations</span>
+            </a>
+        </nav>
         
-        <div style="margin-top: 20px; font-size: 14px;">
-            <p>"Dogs are not our whole life, but they make our lives whole." - Roger Caras</p>
+        <div class="sidebar-footer">
+            <p>© 2023 Dog Hub</p>
         </div>
     </div>
     
     <!-- Main Content -->
     <div class="main-content">
         <header>
-            <h1>Welcome to Dog Lovers</h1>
-            <p>Your ultimate resource for all things canine!</p>
+            <h1>Discover Amazing Dogs</h1>
+            <p>Find your perfect canine companion and learn how to care for them</p>
         </header>
         
-        <div class="dog-card">
-            <h3>Why Dogs Make Great Pets</h3>
-            <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Happy Dog">
-            <p>Dogs are known for their loyalty, companionship, and unconditional love. They can reduce stress, encourage exercise, and provide a sense of security. Studies show that dog owners tend to have lower blood pressure and cholesterol levels.</p>
-        </div>
-        
-        <div class="dog-card">
-            <h3>Dog Care Tips</h3>
-            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dog Being Groomed">
-            <p>Proper dog care includes regular veterinary check-ups, a balanced diet, daily exercise, grooming, and training. Remember to provide fresh water at all times and keep your dog's living area clean. Socialization is also important for your dog's mental health.</p>
-        </div>
-        
-        <div class="dog-card">
-            <h3>Training Your Dog</h3>
-            <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dog Training">
-            <p>Positive reinforcement is the most effective training method. Reward good behavior with treats, praise, or play. Be consistent with commands and practice regularly. Remember that patience is key - all dogs learn at their own pace.</p>
+        <div class="dog-cards">
+            <div class="dog-card">
+                <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Golden Retriever">
+                <div class="dog-card-content">
+                    <span class="tag">Popular</span>
+                    <h3>Golden Retrievers</h3>
+                    <p>Friendly, intelligent and devoted. These dogs are great family pets and excel in obedience.</p>
+                </div>
+            </div>
+            
+            <div class="dog-card">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="French Bulldog">
+                <div class="dog-card-content">
+                    <span class="tag">Trending</span>
+                    <h3>French Bulldogs</h3>
+                    <p>Adaptable, playful and smart. Perfect for apartment living with their moderate exercise needs.</p>
+                </div>
+            </div>
+            
+            <div class="dog-card">
+                <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="German Shepherd">
+                <div class="dog-card-content">
+                    <span class="tag">Working Dog</span>
+                    <h3>German Shepherds</h3>
+                    <p>Confident, courageous and smart. Often used as working dogs in police and service roles.</p>
+                </div>
+            </div>
         </div>
         
         <footer>
-            <p>&copy; 2023 Dog Lovers Website. All rights reserved.</p>
+            <p>Join our community of dog lovers and get the latest tips and resources</p>
         </footer>
     </div>
 </body>
